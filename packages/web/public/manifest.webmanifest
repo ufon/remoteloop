@@ -1,0 +1,13 @@
+{
+    "name": "remoteloop",
+    "short_name": "remoteloop",
+    "start_url": "index.html",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "assets/remote-control.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "remoteloop",
+  "version": "1.0.0",
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^5.0.0"
+  },
+  "scripts": {
+    "start:desktop": "lerna exec --scope @remoteloop/desktop -- npm start",
+    "build:desktop": "lerna exec --scope @remoteloop/desktop -- npm run build",
+    "start:web": "lerna exec --scope @remoteloop/web -- npm start",
+    "build:web": "lerna exec --scope @remoteloop/web -- npm run build",
+    "start": "concurrently \"npm run start:desktop\" \"npm run start:web\"",
+    "build": "npm run build:web && npm run build:desktop"
+  }
+}

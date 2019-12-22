@@ -1,0 +1,19 @@
+{
+    "name": "@remoteloop/web",
+    "description": "",
+    "version": "1.0.0",
+    "main": "src/index.js",
+    "license": "MIT",
+    "scripts": {
+        "clear": "rm -rf dist .cache build",
+        "start": "parcel public/index.html --open",
+        "build": "npm run clear && parcel build public/index.html"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.12.4"
+    },
+    "dependencies": {
+        "hammerjs": "^2.0.8",
+        "socket.io-client": "^2.3.0"
+    }
+}
