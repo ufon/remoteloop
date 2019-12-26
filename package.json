@@ -1,8 +1,12 @@
 {
   "name": "remoteloop",
   "version": "1.0.0",
-  "author": "",
   "license": "MIT",
+  "copyright": "Copyright © 2020 Anton Postoyalko",
+  "author": {
+    "name": "Anton Postoyalko",
+    "email": "ufon.exe@yandex.ru"
+  },
   "devDependencies": {
     "concurrently": "^5.0.0"
   },

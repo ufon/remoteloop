@@ -44,6 +44,7 @@
         "electron-log": "^4.0.0-beta.10",
         "express": "^4.17.1",
         "ip": "^1.1.5",
+        "keycode": "^2.2.0",
         "qrcode": "^1.4.4",
         "robotjs": "^0.6.0",
         "socket.io": "^2.3.0"

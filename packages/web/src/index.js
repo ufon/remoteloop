@@ -9,10 +9,13 @@ import {
 const socketServer = window.location.href;
 const socket = io(socketServer);
 const trackPadNode = document.getElementById("trackpad");
+const keyboardButtonNode = document.getElementById("toggle-keyboard");
+const inputElement = document.getElementById("input");
 const trackPadEvenListener = new Hammer.Manager(trackPadNode);
 
 const state = {
-  mouseLeftButtonState: "up"
+  mouseLeftButtonState: "up",
+  isKeyboardOpen: false
 };
 
 const singlepan = new Hammer.Pan(singlePanResolverSettings);
@@ -33,7 +36,7 @@ trackPadEvenListener.on("pan", event => {
   if (state.mouseLeftButtonState === "up") {
     socket.emit("pan", event);
   } else {
-    socket.emit("pandrag", event);
+    socket.emit("pan-drag", event);
   }
 });
 
@@ -51,6 +54,27 @@ trackPadEvenListener.on("panend pressup", event => {
   state.mouseLeftButtonState = "up";
 });
 
-trackPadEvenListener.on("pinch", event => {
-  socket.emit("pinch", event);
+keyboardButtonNode.addEventListener("click", () => {
+  const buttonIconElement = document.querySelector("#toggle-keyboard > i");
+  if (!state.isKeyboardOpen) {
+    inputElement.focus();
+    buttonIconElement.classList.remove("up");
+    buttonIconElement.classList.add("down");
+    state.isKeyboardOpen = true;
+  } else {
+    inputElement.blur();
+    buttonIconElement.classList.remove("down");
+    buttonIconElement.classList.add("up");
+    state.isKeyboardOpen = false;
+  }
+});
+inputElement.addEventListener("keyup", (event) => {
+  socket.emit("keyboard-tap", event.keyCode);
+  inputElement.value = '';
+});
+
+inputElement.addEventListener('focusout', e => {
+  buttonIconElement.classList.remove("down");
+  buttonIconElement.classList.add("up");
+  state.isKeyboardOpen = false;
 });

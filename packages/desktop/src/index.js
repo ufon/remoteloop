@@ -31,19 +31,11 @@ const toggleWindow = () => {
 };
 
 const createTray = () => {
-  console.log(process.version);
   tray = new Tray(path.join(assetsDirectory, "remoteControl.png"));
 
   tray.on("right-click", toggleWindow);
   tray.on("double-click", toggleWindow);
   tray.on("click", toggleWindow);
-
-  const contextMenu = Menu.buildFromTemplate([
-    { id: "1", label: "Activate", click: toggleWindow },
-    { type: "separator" },
-    { id: "2", label: "Quit", role: "quit" }
-  ]);
-  // tray.setContextMenu(contextMenu);
 };
 
 const createWindow = () => {
@@ -55,7 +47,6 @@ const createWindow = () => {
     fullscreenable: false,
     resizable: false,
     webPreferences: {
-      // webSecurity: false,
       nodeIntegration: true,
       backgroundThrottling: false
     }
@@ -83,7 +74,15 @@ ipcMain.on("network-change", (event, onLine) => {
   }
 });
 
-// Quit the app when the window is closed
+ipcMain.on("menu-click", event => {
+  const contextMenu = Menu.buildFromTemplate([
+    { id: "1", label: "About", click: toggleWindow },
+    { type: "separator" },
+    { id: "2", label: "Quit", role: "quit" }
+  ]);
+  contextMenu.popup();
+});
+
 app.on("window-all-closed", () => {
   app.quit();
 });

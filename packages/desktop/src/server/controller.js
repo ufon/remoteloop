@@ -3,6 +3,7 @@ const http = require("http");
 const robot = require("robotjs");
 const { dirname, join } = require("path");
 const log = require("electron-log");
+const keycode = require('keycode');
 
 const app = express();
 const server = http.Server(app);
@@ -12,6 +13,7 @@ const appBundleDirectory = join(
   "dist"
 );
 robot.setMouseDelay(1);
+robot.setKeyboardDelay(1);
 
 app.use(express.static(appBundleDirectory));
 
@@ -29,7 +31,7 @@ io.sockets.on("connection", socket => {
     robot.moveMouse(oldX + velocityX * 10 * 2, oldY + velocityY * 10 * 2);
   });
 
-  socket.on("pandrag", event => {
+  socket.on("pan-drag", event => {
     const { x: oldX, y: oldY } = robot.getMousePos();
     const { velocityX, velocityY } = event;
 
@@ -52,12 +54,16 @@ io.sockets.on("connection", socket => {
     const { velocityY } = event;
     robot.scrollMouse(0, velocityY * 10 * 2);
   });
+
+  socket.on("keyboard-tap", event => {
+    robot.keyTap(keycode(event));
+  });
 });
 
 const controller = {
   run: () => {
     const localAddress = require("ip").address();
-    server.listen(8080, localAddress);
+    server.listen(50004, localAddress);
   },
   stop: () => {
     server.close();
