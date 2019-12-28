@@ -10,6 +10,7 @@ In order to run locally type the following:
 
 ```
 npm install
+npm run bootstrap
 npm start
 ```
 
@@ -19,5 +20,6 @@ Building does not support cross-compiling. In order to build you must be logged 
 
 ```
 npm install
+npm run bootstrap
 npm run build
 ```

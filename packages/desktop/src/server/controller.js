@@ -2,9 +2,7 @@ const express = require("express");
 const http = require("http");
 const robot = require("robotjs");
 const { dirname, join } = require("path");
-const log = require("electron-log");
-const keycode = require('keycode');
-
+const keycode = require("keycode");
 const app = express();
 const server = http.Server(app);
 const io = require("socket.io")(server);
@@ -18,15 +16,9 @@ robot.setKeyboardDelay(1);
 app.use(express.static(appBundleDirectory));
 
 io.sockets.on("connection", socket => {
-  log.info("Connected");
-
   socket.on("pan", event => {
     const { x: oldX, y: oldY } = robot.getMousePos();
     const { velocityX, velocityY } = event;
-
-    log.info("Pan event fired");
-
-    log.info("robotjs:", robot.moveMouse);
 
     robot.moveMouse(oldX + velocityX * 10 * 2, oldY + velocityY * 10 * 2);
   });
@@ -55,8 +47,12 @@ io.sockets.on("connection", socket => {
     robot.scrollMouse(0, velocityY * 10 * 2);
   });
 
-  socket.on("keyboard-tap", event => {
-    robot.keyTap(keycode(event));
+  socket.on("keyboard-string", string => {
+    robot.typeString(string);
+  });
+
+  socket.on("keyboard-special", code => {
+    robot.keyTap(keycode(code));
   });
 });
 

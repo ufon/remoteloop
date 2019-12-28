@@ -8,9 +8,11 @@
     "email": "ufon.exe@yandex.ru"
   },
   "devDependencies": {
-    "concurrently": "^5.0.0"
+    "concurrently": "^5.0.0",
+    "lerna": "^3.20.0"
   },
   "scripts": {
+    "bootstrap": "lerna bootstrap",
     "start:desktop": "lerna exec --scope @remoteloop/desktop -- npm start",
     "build:desktop": "lerna exec --scope @remoteloop/desktop -- npm run build",
     "start:web": "lerna exec --scope @remoteloop/web -- npm start",
