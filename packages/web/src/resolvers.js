@@ -1,13 +1,15 @@
+import { DIRECTION_ALL } from "hammerjs";
+
 export const singlePanResolverSettings = {
   event: "pan",
-  direction: Hammer.DIRECTION_ALL,
+  direction: DIRECTION_ALL,
   threshold: 0,
   pointers: 1
 };
 
 export const multiPanResolverSettings = {
   event: "multipan",
-  direction: Hammer.DIRECTION_ALL,
+  direction: DIRECTION_ALL,
   threshold: 0,
   pointers: 2
 };

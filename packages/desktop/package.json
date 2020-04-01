@@ -30,18 +30,18 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "devDependencies": {
-        "@babel/core": "^7.7.4",
-        "@babel/node": "^7.7.4",
-        "@babel/preset-env": "^7.7.4",
+        "@babel/core": "^7.9.0",
+        "@babel/node": "^7.8.7",
+        "@babel/preset-env": "^7.9.0",
         "devtron": "^1.4.0",
-        "electron": "^7.1.2",
-        "electron-builder": "^21.2.0",
-        "electron-rebuild": "^1.8.8",
-        "nodemon": "^2.0.1"
+        "electron": "^8.2.0",
+        "electron-builder": "^22.4.1",
+        "electron-rebuild": "^1.10.1",
+        "nodemon": "^2.0.2"
     },
     "dependencies": {
         "@remoteloop/web": "^1.0.0",
-        "electron-log": "^4.0.0-beta.10",
+        "electron-log": "^4.1.1",
         "express": "^4.17.1",
         "ip": "^1.1.5",
         "keycode": "^2.2.0",

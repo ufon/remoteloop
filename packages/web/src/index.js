@@ -85,26 +85,19 @@ inputElement.addEventListener("input", event => {
   socket.emit("keyboard-string", event.data);
   inputElement.value = "";
 });
-
 inputElement.addEventListener("keyup", event => {
   if (!handleSpecialKeys.some(code => code === event.keyCode)) {
     return;
   }
   socket.emit("keyboard-special", event.keyCode);
 });
-inputElement.addEventListener(
-  "focus",
-  () => {
-    buttonIconElement.classList.remove("up");
-    buttonIconElement.classList.add("down");
-    state.isKeyboardOpen = true;
-  }
-);
-inputElement.addEventListener(
-  "blur",
-  () => {
-    buttonIconElement.classList.remove("down");
-    buttonIconElement.classList.add("up");
-    state.isKeyboardOpen = false;
-  }
-);
+inputElement.addEventListener("focus", () => {
+  buttonIconElement.classList.remove("up");
+  buttonIconElement.classList.add("down");
+  state.isKeyboardOpen = true;
+});
+inputElement.addEventListener("blur", () => {
+  buttonIconElement.classList.remove("down");
+  buttonIconElement.classList.add("up");
+  state.isKeyboardOpen = false;
+});
