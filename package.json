@@ -2,10 +2,16 @@
   "name": "remoteloop",
   "version": "1.0.0",
   "license": "MIT",
+  "description": "The simplest solution for remote control of your PC.",
   "copyright": "Copyright © 2020 Anton Postoyalko",
+  "homepage": "https://github.com/ufon/remoteloop#readme",
   "author": {
     "name": "Anton Postoyalko",
     "email": "ufon.exe@yandex.ru"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ufon/remoteloop.git"
   },
   "devDependencies": {
     "concurrently": "^5.1.0",
@@ -15,7 +21,8 @@
     "clean": "rm -rf node_modules && lerna clean",
     "bootstrap": "lerna bootstrap",
     "start:desktop": "lerna exec --scope @remoteloop/desktop -- npm start",
-    "build:desktop": "lerna exec --scope @remoteloop/desktop -- npm run build",
+    "build:desktop:win": "lerna exec --scope @remoteloop/desktop -- npm run build -- --win",
+    "build:desktop:mac": "lerna exec --scope @remoteloop/desktop -- npm run build -- --mac",
     "start:web": "lerna exec --scope @remoteloop/web -- npm start",
     "build:web": "lerna exec --scope @remoteloop/web -- npm run build",
     "start": "concurrently \"npm run start:desktop\" \"npm run start:web\"",

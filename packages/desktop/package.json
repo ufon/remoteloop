@@ -1,7 +1,5 @@
 {
     "name": "@remoteloop/desktop",
-    "productName": "remoteloop",
-    "description": "The simplest solution for remote control of your PC.",
     "version": "1.0.0",
     "main": "src/index.js",
     "license": "MIT",
@@ -11,12 +9,61 @@
         "email": "ufon.exe@yandex.ru"
     },
     "build": {
-        "appId": "com.electron.remoteloop",
+        "appId": "com.remoteloop",
+        "productName": "remoteloop",
         "copyright": "Copyright © 2020 Anton Postoyalko",
         "files": [
             "src/**/*",
             "node_modules/**/*"
         ],
+        "mac": {
+            "category": "public.app-category.developer-tools",
+            "icon": "assets/icons/icon.icns"
+        },
+        "dmg": {
+            "contents": [
+                {
+                    "x": 110,
+                    "y": 150
+                },
+                {
+                    "x": 440,
+                    "y": 150,
+                    "type": "link",
+                    "path": "/Applications"
+                }
+            ],
+            "artifactName": "remoteloop-${version}.${ext}"
+        },
+        "win": {
+            "target": [
+                {
+                    "target": "nsis",
+                    "arch": [
+                        "x64"
+                    ]
+                },
+                {
+                    "target": "portable"
+                }
+            ],
+            "icon": "assets/icons/icon.ico"
+        },
+        "nsis": {
+            "runAfterFinish": true,
+            "installerIcon": "assets/icons/icon.ico",
+            "artifactName": "remoteloop-${version}.${ext}"
+        },
+        "portable": {
+            "artifactName": "remoteloop.exe"
+        },
+        "appx": {
+            "applicationId": "com.remoteloop",
+            "backgroundColor": "#464646",
+            "identityName": "com.remoteloop",
+            "publisherDisplayName": "Anton Postoyalko",
+            "artifactName": "remoteloop-${version}.${ext}"
+        },
         "directories": {
             "buildResources": "resources"
         },

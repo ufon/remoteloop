@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  build_win:
+    docker:
+      - image: electronuserland/builder:wine
+    steps:
+      - checkout
+      - run: npm ci && npm run build:desktop:win
+
+  build_mac:
+    macos:
+      xcode: "10.0.0"
+    steps:
+      - checkout
+      - run: security create-keychain -p $KEYCHAIN_PASSWORD build.keychain
+      - run: security default-keychain -s build.keychain
+      - run: security unlock-keychain -p $KEYCHAIN_PASSWORD build.keychain
+      - run: echo $KEYSTORE | base64 --decode - > keystore.p12
+      - run: security import keystore.p12 -k build.keychain -P $KEYCHAIN_PASSWORD -T /usr/bin/codesign
+      - run: npm ci && npm run build:desktop:mac
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build_win
+      - build_mac
