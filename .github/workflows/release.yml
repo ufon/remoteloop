@@ -1,4 +1,4 @@
-name: release
+name: remoteloop-release
 
 on: push
 
@@ -8,9 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Setup Node
-      - uses: actions/setup-node@v1
+        uses: actions/setup-node@v1
       - name: Version bump
-      - run: |
+        run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           npm version patch -m "chore: release %s"
