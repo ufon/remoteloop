@@ -12,7 +12,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          npx lerna version patch -m "chore(release): publish %s"
+          npx lerna version patch -m "chore(release): publish %s" --yes
   release:
     runs-on: ${{ matrix.os }}
     needs: [version-bump] 
