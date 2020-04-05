@@ -1,6 +1,6 @@
 {
     "name": "@remoteloop/desktop",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "main": "src/index.js",
     "license": "MIT",
     "copyright": "Copyright © 2020 Anton Postoyalko",
@@ -87,7 +87,7 @@
         "nodemon": "^2.0.2"
     },
     "dependencies": {
-        "@remoteloop/web": "^0.0.1",
+        "@remoteloop/web": "^0.0.2",
         "electron-log": "^4.1.1",
         "express": "^4.17.1",
         "ip": "^1.1.5",
