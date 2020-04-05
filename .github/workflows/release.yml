@@ -3,28 +3,26 @@ name: remoteloop-release
 on: push
 
 jobs:
-  bump:
+  version-bump:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Node
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
       - name: Version bump
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          npm version patch -m "chore: release %s"
-          git push
+          npx lerna version patch -m "chore(release): publish %s"
   release:
     runs-on: ${{ matrix.os }}
+    needs: [version-bump] 
     strategy:
       matrix:
         os: [macOS-10.14, windows-2019, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Node
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
       - name: Installing dependencies
-        run: npm ci
+        run: npm ci && npm run bootstrap
       - name: Build + Publish
         run: npm run build -- -- --publish always
