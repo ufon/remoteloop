@@ -8,6 +8,10 @@
         "name": "Anton Postoyalko",
         "email": "ufon.exe@yandex.ru"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ufon/remoteloop.git"
+    },
     "build": {
         "appId": "com.remoteloop",
         "productName": "remoteloop",
