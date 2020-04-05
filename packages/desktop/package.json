@@ -66,8 +66,7 @@
         },
         "directories": {
             "buildResources": "resources"
-        },
-        "publish": null
+        }
     },
     "scripts": {
         "postinstall": "npm run rebuild",

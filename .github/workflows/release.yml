@@ -1,5 +1,10 @@
 name: remoteloop-release
 
+# on:
+#   push:
+#     branches:
+#       - master
+
 on: push
 
 jobs:
@@ -15,7 +20,7 @@ jobs:
           npx lerna version patch -m "chore(release): publish %s" --yes
   release:
     runs-on: ${{ matrix.os }}
-    needs: [version-bump] 
+    needs: [version-bump]
     strategy:
       matrix:
         os: [macOS-10.14, windows-2019]
@@ -25,4 +30,6 @@ jobs:
       - name: Installing dependencies
         run: npm ci && npm run bootstrap -- --no-ci
       - name: Build + Publish
-        run: npm run build -- -- --publish always
+        run: npm run build -- -- --publish=always
+        env:
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
