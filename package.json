@@ -1,6 +1,6 @@
 {
   "name": "remoteloop",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "description": "The simplest solution for remote control of your PC.",
   "copyright": "Copyright © 2020 Anton Postoyalko",
@@ -15,14 +15,16 @@
   },
   "devDependencies": {
     "concurrently": "^5.1.0",
-    "lerna": "^3.20.2"
+    "lerna": "^3.20.2",
+    "run-script-os": "^1.1.1"
   },
   "scripts": {
     "clean": "rm -rf node_modules && lerna clean",
     "bootstrap": "lerna bootstrap",
-    "start:desktop": "lerna exec --scope @remoteloop/desktop -- npm start",
-    "build:desktop:win": "lerna exec --scope @remoteloop/desktop -- npm run build -- --win",
-    "build:desktop:mac": "lerna exec --scope @remoteloop/desktop -- npm run build -- --mac",
+    "build:desktop": "run-script-os",
+    "build:desktop:darwin": "lerna exec --scope @remoteloop/desktop -- npm run build -- --mac",
+    "build:desktop:win32": "lerna exec --scope @remoteloop/desktop -- npm run build -- --win",
+    "build:desktop:linux": "lerna exec --scope @remoteloop/desktop -- npm run build -- --linux",
     "start:web": "lerna exec --scope @remoteloop/web -- npm start",
     "build:web": "lerna exec --scope @remoteloop/web -- npm run build",
     "start": "concurrently \"npm run start:desktop\" \"npm run start:web\"",
