@@ -7,6 +7,9 @@
             "npmClientArgs": [
                 "--no-package-lock"
             ]
+        },
+        "version": {
+            "githubRelease": false
         }
     },
     "version": "0.0.6"

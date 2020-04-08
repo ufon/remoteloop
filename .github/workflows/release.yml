@@ -1,23 +1,11 @@
 name: remoteloop-release
 
-# on:
-#   push:
-#     branches:
-#       - master
-
-on: push
+on:
+  push:
+    tags:
+      - "*"
 
 jobs:
-  version-bump:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - name: Version bump
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          npx lerna version patch -m "chore(release): publish %s" --yes
   release:
     runs-on: ${{ matrix.os }}
     needs: [version-bump]
@@ -30,6 +18,6 @@ jobs:
       - name: Installing dependencies
         run: npm ci && npm run bootstrap -- --no-ci
       - name: Build + Publish
-        run: npm run build -- -- --publish=onTag
+        run: npm run build -- -- --publish=always
         env:
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
