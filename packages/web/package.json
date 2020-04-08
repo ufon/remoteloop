@@ -1,7 +1,7 @@
 {
     "name": "@remoteloop/web",
     "description": "",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "main": "src/index.js",
     "license": "MIT",
     "scripts": {
