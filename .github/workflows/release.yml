@@ -30,6 +30,6 @@ jobs:
       - name: Installing dependencies
         run: npm ci && npm run bootstrap -- --no-ci
       - name: Build + Publish
-        run: npm run build -- -- --publish=always
+        run: npm run build -- -- --publish=onTag
         env:
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
