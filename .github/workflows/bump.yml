@@ -11,10 +11,10 @@ jobs:
   version-bump:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-    - name: Version bump
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - name: Version bump
         run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        npx lerna version patch -m "chore(release): publish %s" --yes
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          npx lerna version patch -m "chore(release): publish %s" --yes
