@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
       - name: Version bump
         run: |
           git config --local user.email "action@github.com"
@@ -21,7 +21,9 @@ jobs:
         os: [macOS-10.14, windows-2019]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12.18.3'
       - name: Installing dependencies
         run: npx lerna bootstrap --no-ci
       - name: Build + Release
