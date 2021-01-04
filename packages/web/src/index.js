@@ -16,8 +16,7 @@ const buttonIconElement = document.querySelector("#toggle-keyboard > i");
 const inputElement = document.getElementById("input");
 
 const trackPadEvenListener = new Hammer.Manager(trackPadNode);
-const handleSpecialKeys = [
-  KeyCode.KEY_ENTER,
+const specialKeyCodes = [
   KeyCode.KEY_RETURN,
   KeyCode.KEY_BACK_SPACE,
   KeyCode.KEY_ESCAPE
@@ -86,10 +85,10 @@ inputElement.addEventListener("input", event => {
   inputElement.value = "";
 });
 inputElement.addEventListener("keyup", event => {
-  if (!handleSpecialKeys.some(code => code === event.keyCode)) {
+  if (!specialKeyCodes.some(code => code === event.key)) {
     return;
   }
-  socket.emit("keyboard-special", event.keyCode);
+  socket.emit("keyboard-special", event.key);
 });
 inputElement.addEventListener("focus", () => {
   buttonIconElement.classList.remove("up");

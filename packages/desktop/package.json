@@ -3,7 +3,7 @@
     "version": "0.0.7",
     "main": "src/index.js",
     "license": "MIT",
-    "copyright": "Copyright © 2020 Anton Postoyalko",
+    "copyright": "Copyright © 2021 Anton Postoyalko",
     "author": {
         "name": "Anton Postoyalko",
         "email": "ufon.exe@yandex.ru"
@@ -15,7 +15,7 @@
     "build": {
         "appId": "com.remoteloop",
         "productName": "remoteloop",
-        "copyright": "Copyright © 2020 Anton Postoyalko",
+        "copyright": "Copyright © 2021 Anton Postoyalko",
         "files": [
             "src/**/*",
             "node_modules/**/*"
@@ -74,29 +74,29 @@
     },
     "scripts": {
         "postinstall": "npm run rebuild",
-        "start": "nodemon --watch ./src --exec 'electron ./src --debug'",
+        "start": "nodemon --watch ./src --exec 'electron ./src --inspect'",
         "rebuild": "electron-rebuild -f -w robotjs",
         "build": "electron-builder",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "devDependencies": {
-        "@babel/core": "^7.9.0",
-        "@babel/node": "^7.8.7",
-        "@babel/preset-env": "^7.9.0",
+        "@babel/core": "^7.12.10",
+        "@babel/node": "^7.12.10",
+        "@babel/preset-env": "^7.12.11",
         "devtron": "^1.4.0",
-        "electron": "^8.2.0",
-        "electron-builder": "^22.4.1",
-        "electron-rebuild": "^1.10.1",
-        "nodemon": "^2.0.2"
+        "electron": "^11.1.1",
+        "electron-builder": "^22.9.1",
+        "electron-rebuild": "^2.3.4",
+        "nodemon": "^2.0.6"
     },
     "dependencies": {
         "@remoteloop/web": "^0.0.7",
-        "electron-log": "^4.1.1",
+        "electron-log": "^4.3.1",
         "express": "^4.17.1",
         "ip": "^1.1.5",
         "keycode": "^2.2.0",
         "qrcode": "^1.4.4",
         "robotjs": "^0.6.0",
-        "socket.io": "^2.3.0"
+        "socket.io": "^3.0.4"
     }
 }
