@@ -14,8 +14,8 @@ jobs:
           git config --local user.name "GitHub Action"
           npx lerna version patch -m "chore(release): publish %s" --yes
   build:
-    if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ${{ matrix.os }}
+    needs: bump
     strategy:
       matrix:
         os: [macOS-10.14, windows-2019]
