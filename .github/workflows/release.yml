@@ -19,14 +19,8 @@ jobs:
         with:
           node-version: "12.18.3"
       - name: Installing dependencies
-        run: npx lerna bootstrap --no-ci
+        run: npm ci && npm run bootstrap -- --no-ci
       - name: Build + Release
-        uses: samuelmeuli/action-electron-builder@v1
-        with:
-          # GitHub token, automatically provided to the action
-          # (No need to define this secret in the repo settings)
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-          # If the commit is tagged with a version (e.g. "v1.0.0"),
-          # release the app after building
-          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
+        run: npm run build -- -- --publish=always
+        env:
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
