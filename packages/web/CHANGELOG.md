@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.1 (2021-01-05)
+
+
+### Bug Fixes
+
+* revert parcel version + ci improvements ([11b8c2c](https://github.com/ufon/remoteloop/commit/11b8c2c1c84fdfb264b200c23eb4df42592e3bac))
+
+
+
+
+
 # 0.1.0 (2021-01-05)
 
 
