@@ -33,6 +33,6 @@
     "build:web": "lerna exec --scope @remoteloop/web -- npm run build",
     "start": "concurrently \"npm run start:desktop\" \"npm run start:web\"",
     "build": "npm run build:web && npm run build:desktop",
-    "release": "npm run build"
+    "release": "npm run build -- -- --publish always"
   }
 }
