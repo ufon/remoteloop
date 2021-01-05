@@ -3,7 +3,7 @@ name: remoteloop-release
 on:
   workflow_run:
     workflows: ["remoteloop-bump"]
-    branches: ["feature/circleci-integration"]
+    branches: [master, feature/circleci-integration]
     types:
       - completed
 
