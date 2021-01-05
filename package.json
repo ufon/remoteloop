@@ -1,24 +1,38 @@
 {
   "name": "remoteloop",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "license": "MIT",
-  "copyright": "Copyright © 2020 Anton Postoyalko",
+  "description": "The simplest solution to control remotely your computer",
+  "copyright": "Copyright © 2021 Anton Postoyalko",
+  "homepage": "https://github.com/ufon/remoteloop#readme",
   "author": {
     "name": "Anton Postoyalko",
     "email": "ufon.exe@yandex.ru"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ufon/remoteloop.git"
+  },
+  "engines": {
+    "node": ">=12.18.3"
+  },
   "devDependencies": {
-    "concurrently": "^5.1.0",
-    "lerna": "^3.20.2"
+    "concurrently": "^5.3.0",
+    "lerna": "^3.22.1",
+    "run-script-os": "^1.1.4"
   },
   "scripts": {
     "clean": "rm -rf node_modules && lerna clean",
     "bootstrap": "lerna bootstrap",
     "start:desktop": "lerna exec --scope @remoteloop/desktop -- npm start",
-    "build:desktop": "lerna exec --scope @remoteloop/desktop -- npm run build",
+    "build:desktop": "run-script-os",
+    "build:desktop:darwin": "lerna exec --scope @remoteloop/desktop -- npm run build -- --mac",
+    "build:desktop:win32": "lerna exec --scope @remoteloop/desktop -- npm run build -- --win",
+    "build:desktop:linux": "lerna exec --scope @remoteloop/desktop -- npm run build -- --linux",
     "start:web": "lerna exec --scope @remoteloop/web -- npm start",
     "build:web": "lerna exec --scope @remoteloop/web -- npm run build",
     "start": "concurrently \"npm run start:desktop\" \"npm run start:web\"",
-    "build": "npm run build:web && npm run build:desktop"
+    "build": "npm run build:web && npm run build:desktop",
+    "release": "npm run build"
   }
 }

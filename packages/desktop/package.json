@@ -1,52 +1,102 @@
 {
     "name": "@remoteloop/desktop",
-    "productName": "remoteloop",
-    "description": "The simplest solution for remote control of your PC.",
-    "version": "1.0.0",
+    "version": "0.0.15",
     "main": "src/index.js",
     "license": "MIT",
-    "copyright": "Copyright © 2020 Anton Postoyalko",
+    "copyright": "Copyright © 2021 Anton Postoyalko",
     "author": {
         "name": "Anton Postoyalko",
         "email": "ufon.exe@yandex.ru"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ufon/remoteloop.git"
+    },
     "build": {
-        "appId": "com.electron.remoteloop",
-        "copyright": "Copyright © 2020 Anton Postoyalko",
+        "appId": "com.remoteloop",
+        "productName": "remoteloop",
+        "copyright": "Copyright © 2021 Anton Postoyalko",
         "files": [
             "src/**/*",
             "node_modules/**/*"
         ],
+        "mac": {
+            "category": "public.app-category.developer-tools",
+            "icon": "assets/icons/icon.icns"
+        },
+        "dmg": {
+            "contents": [
+                {
+                    "x": 110,
+                    "y": 150
+                },
+                {
+                    "x": 440,
+                    "y": 150,
+                    "type": "link",
+                    "path": "/Applications"
+                }
+            ],
+            "artifactName": "remoteloop-${version}.${ext}"
+        },
+        "win": {
+            "target": [
+                {
+                    "target": "nsis",
+                    "arch": [
+                        "x64"
+                    ]
+                },
+                {
+                    "target": "portable"
+                }
+            ],
+            "icon": "assets/icons/icon.ico"
+        },
+        "nsis": {
+            "runAfterFinish": true,
+            "installerIcon": "assets/icons/icon.ico",
+            "artifactName": "remoteloop-${version}.${ext}"
+        },
+        "portable": {
+            "artifactName": "remoteloop.exe"
+        },
+        "appx": {
+            "applicationId": "com.remoteloop",
+            "backgroundColor": "#464646",
+            "identityName": "com.remoteloop",
+            "publisherDisplayName": "Anton Postoyalko",
+            "artifactName": "remoteloop-${version}.${ext}"
+        },
         "directories": {
             "buildResources": "resources"
-        },
-        "publish": null
+        }
     },
     "scripts": {
         "postinstall": "npm run rebuild",
-        "start": "nodemon --watch ./src --exec 'electron ./src --debug'",
+        "start": "nodemon --watch ./src --exec 'electron ./src --inspect'",
         "rebuild": "electron-rebuild -f -w robotjs",
         "build": "electron-builder",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "devDependencies": {
-        "@babel/core": "^7.9.0",
-        "@babel/node": "^7.8.7",
-        "@babel/preset-env": "^7.9.0",
+        "@babel/core": "^7.12.10",
+        "@babel/node": "^7.12.10",
+        "@babel/preset-env": "^7.12.11",
         "devtron": "^1.4.0",
-        "electron": "^8.2.0",
-        "electron-builder": "^22.4.1",
-        "electron-rebuild": "^1.10.1",
-        "nodemon": "^2.0.2"
+        "electron": "^11.1.1",
+        "electron-builder": "^22.9.1",
+        "electron-rebuild": "^2.3.4",
+        "nodemon": "^2.0.6"
     },
     "dependencies": {
-        "@remoteloop/web": "^1.0.0",
-        "electron-log": "^4.1.1",
+        "@remoteloop/web": "^0.0.15",
+        "electron-log": "^4.3.1",
         "express": "^4.17.1",
         "ip": "^1.1.5",
         "keycode": "^2.2.0",
         "qrcode": "^1.4.4",
         "robotjs": "^0.6.0",
-        "socket.io": "^2.3.0"
+        "socket.io": "^3.0.4"
     }
 }
