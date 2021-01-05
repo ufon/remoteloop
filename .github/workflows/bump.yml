@@ -1,0 +1,15 @@
+name: remoteloop-bump
+
+on: [push]
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - name: Version bump
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          npx lerna version patch -m "chore(release): publish %s" --yes
