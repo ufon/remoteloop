@@ -2,10 +2,11 @@
     "name": "@remoteloop/web",
     "version": "0.1.1",
     "license": "MIT",
+    "main": "src/index.js",
     "scripts": {
         "clear": "rm -rf dist .cache build",
-        "start": "parcel public/index.html --open",
-        "build": "npm run clear && parcel build public/index.html"
+        "start": "parcel src/index.html",
+        "build": "npm run clear && parcel build src/index.html"
     },
     "devDependencies": {
         "parcel-bundler": "^1.12.4"

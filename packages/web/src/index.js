@@ -1,30 +1,25 @@
-import io from "socket.io-client";
-import Hammer from "hammerjs";
-import * as KeyCode from "keycode-js";
-import {
-  pressResolverSettings,
-  multiPanResolverSettings,
-  singlePanResolverSettings
-} from "./resolvers";
+import io from 'socket.io-client';
+import Hammer from 'hammerjs';
+import * as KeyCode from 'keycode-js';
+import { pressResolverSettings, multiPanResolverSettings, singlePanResolverSettings } from './resolvers';
 
-const socketServer = window.location.href;
-const socket = io(socketServer);
+const socket = io({ transports: ['websocket'] });
 
-const trackPadNode = document.getElementById("trackpad");
-const keyboardButtonNode = document.getElementById("toggle-keyboard");
-const buttonIconElement = document.querySelector("#toggle-keyboard > i");
-const inputElement = document.getElementById("input");
+socket.on('connect', () => {
+  console.log('Successfully connected to socket server. `socket.connected`: ', socket.connected);
+});
+
+const trackPadNode = document.getElementById('trackpad');
+const keyboardButtonNode = document.getElementById('toggle-keyboard');
+const buttonIconElement = document.querySelector('#toggle-keyboard > i');
+const inputElement = document.getElementById('input');
 
 const trackPadEvenListener = new Hammer.Manager(trackPadNode);
-const specialKeyCodes = [
-  KeyCode.KEY_RETURN,
-  KeyCode.KEY_BACK_SPACE,
-  KeyCode.KEY_ESCAPE
-];
+const specialKeyCodes = [KeyCode.CODE_BACK_SPACE, KeyCode.CODE_RETURN, KeyCode.CODE_ESCAPE];
 
 const state = {
-  mouseLeftButtonState: "up",
-  isKeyboardOpen: false
+  mouseLeftButtonState: 'up',
+  isKeyboardOpen: false,
 };
 
 /**
@@ -41,33 +36,33 @@ multipan.requireFailure(singlepan);
 
 trackPadEvenListener.add([singlepan, multipan, press, tap]);
 
-trackPadEvenListener.on("multipanup multipandown", event => {
-  socket.emit("scroll", event);
+trackPadEvenListener.on('multipanup multipandown', event => {
+  socket.emit('scroll', event);
 });
 
-trackPadEvenListener.on("pan", event => {
-  if (state.mouseLeftButtonState === "up") {
-    socket.emit("pan", event);
+trackPadEvenListener.on('pan', event => {
+  if (state.mouseLeftButtonState === 'up') {
+    socket.emit('pan', event);
   } else {
-    socket.emit("pan-drag", event);
+    socket.emit('pan-drag', event);
   }
 });
 
-trackPadEvenListener.on("press tap", event => {
-  if (event.type === "tap") {
-    socket.emit("tap", event);
+trackPadEvenListener.on('press tap', event => {
+  if (event.type === 'tap') {
+    socket.emit('tap', event);
   } else {
-    socket.emit("press", event);
-    state.mouseLeftButtonState = "down";
+    socket.emit('press', event);
+    state.mouseLeftButtonState = 'down';
   }
 });
 
-trackPadEvenListener.on("panend pressup", event => {
-  socket.emit("pressup", event);
-  state.mouseLeftButtonState = "up";
+trackPadEvenListener.on('panend pressup', event => {
+  socket.emit('pressup', event);
+  state.mouseLeftButtonState = 'up';
 });
 
-keyboardButtonNode.addEventListener("mousedown", e => {
+keyboardButtonNode.addEventListener('mousedown', e => {
   e.preventDefault();
   if (!state.isKeyboardOpen) {
     inputElement.focus();
@@ -80,23 +75,22 @@ keyboardButtonNode.addEventListener("mousedown", e => {
  * Input events
  **/
 
-inputElement.addEventListener("input", event => {
-  socket.emit("keyboard-string", event.data);
-  inputElement.value = "";
+inputElement.addEventListener('input', event => {
+  socket.emit('keyboard-string', event.data);
+  inputElement.value = '';
 });
-inputElement.addEventListener("keyup", event => {
-  if (!specialKeyCodes.some(code => code === event.key)) {
-    return;
+inputElement.addEventListener('keyup', event => {
+  if (specialKeyCodes.includes(event.code)) {
+    socket.emit('keyboard-special', event.code);
   }
-  socket.emit("keyboard-special", event.key);
 });
-inputElement.addEventListener("focus", () => {
-  buttonIconElement.classList.remove("up");
-  buttonIconElement.classList.add("down");
+inputElement.addEventListener('focus', () => {
+  buttonIconElement.classList.remove('up');
+  buttonIconElement.classList.add('down');
   state.isKeyboardOpen = true;
 });
-inputElement.addEventListener("blur", () => {
-  buttonIconElement.classList.remove("down");
-  buttonIconElement.classList.add("up");
+inputElement.addEventListener('blur', () => {
+  buttonIconElement.classList.remove('down');
+  buttonIconElement.classList.add('up');
   state.isKeyboardOpen = false;
 });

@@ -82,7 +82,7 @@
     const menuElement = document.getElementById('menu');
 
     const drawQRCode = () => {
-      const getLocalAddress = () => "http://" + require("ip").address() + ":50004";
+      const getLocalAddress = () => "http://" + require("ip").address() + ":7007";
       QRCode.toCanvas(canvasElement, getLocalAddress(), {
         scale: 4
       });
