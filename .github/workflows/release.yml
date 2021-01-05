@@ -3,7 +3,7 @@ name: remoteloop-release
 on:
   workflow_run:
     workflows: ["remoteloop-bump"]
-    branches: [master, feature/circleci-integration]
+    branches: [master]
     types:
       - completed
 
@@ -12,12 +12,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macOS-10.14, windows-2019]
+        os: [macos-latest, windows-latest]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: "12.18.3"
+          node-version: 12
       - name: Installing dependencies
         run: npm ci && npm run bootstrap -- --no-ci
       - name: Build + Release

@@ -14,7 +14,7 @@
     "url": "https://github.com/ufon/remoteloop.git"
   },
   "engines": {
-    "node": ">=12.18.3"
+    "node": ">=12"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

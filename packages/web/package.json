@@ -1,21 +1,18 @@
 {
     "name": "@remoteloop/web",
     "version": "0.1.0",
-    "engines": {
-        "node": ">=12.18.3"
-    },
     "license": "MIT",
     "scripts": {
-        "clean": "rm -rf dist .parcel-cache build",
+        "clear": "rm -rf dist .cache build",
         "start": "parcel public/index.html --open",
-        "build": "npm run clean && parcel build public/index.html"
+        "build": "npm run clear && parcel build public/index.html"
     },
     "devDependencies": {
-        "parcel": "^2.0.0-beta.1"
+        "parcel-bundler": "^1.12.4"
     },
     "dependencies": {
         "hammerjs": "^2.0.8",
         "keycode-js": "^3.1.0",
-        "socket.io-client": "^3.0.4"
+        "socket.io-client": "^3.0.5"
     }
 }
