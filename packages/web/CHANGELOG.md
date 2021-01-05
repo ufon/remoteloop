@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.2 (2021-01-05)
+
+
+### Bug Fixes
+
+* special keys (backspace + enter) && refactor ([3d7f17f](https://github.com/ufon/remoteloop/commit/3d7f17f30d7638126777ba35263b0afc6cda37bc))
+
+
+
+
+
 ## 0.1.1 (2021-01-05)
 
 
