@@ -1,0 +1,63 @@
+@keyframes mother-connecting {
+  0% {
+    left: 0px;
+  }
+  50% {
+    left: -6px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+@keyframes father-connecting {
+  0% {
+    left: 0px;
+  }
+  50% {
+    left: 6px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  fill: greenyellow;
+  position: relative;
+  left: 0px;
+}
+
+.mother-icon rect {
+  clip-path: url("#mother");
+}
+
+.father-icon rect {
+  clip-path: url("#father");
+}
+
+.connection-connecting .icon {
+  fill: orange;
+}
+
+.connection-connecting .mother-icon {
+  animation: mother-connecting 1s infinite;
+}
+
+.connection-connecting .father-icon {
+  animation: father-connecting 1s infinite;
+}
+
+.mother-icon {
+  left: -6px;
+}
+
+.father-icon {
+  left: 6px;
+}
+
+.connection-error .icon {
+  fill: red;
+}

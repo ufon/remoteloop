@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #aa4b6b;
+  background: -webkit-linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b);
+  background: linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b);
+  background-size: 300% 100%;
+  animation: gradient 15s ease-in-out infinite;
+}
+
+#network-status {
+  position: absolute;
+  left: 7px;
+  bottom: 7px;
+}
+
+#refresh {
+  border: none;
+  border-radius: 5px;
+  padding: 0;
+  margin: 0;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  background-color: white;
+}
+
+#menu {
+  height: 28px;
+  width: 7px;
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#menu:hover .dot:before {
+  top: -10px;
+}
+
+#menu:hover .dot:after {
+  bottom: -10px;
+}
+
+.dot,
+.dot:before,
+.dot:after {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 7px;
+  background-color: white;
+}
+
+.dot:before,
+.dot:after {
+  content: "";
+}
+
+.dot:before {
+  top: 10px;
+  transition: top 0.3s ease-out;
+}
+
+.dot:after {
+  bottom: 10px;
+  transition: bottom 0.3s ease-out;
+}
+
+#qr-code {
+  border-radius: 10px;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

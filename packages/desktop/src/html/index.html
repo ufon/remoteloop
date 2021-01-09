@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html class="app" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>remoteloop</title>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./status-icon.css">
+
+</head>
+
+<body>
+    <nav id="menu">
+        <div class="dot"></div>
+    </nav>
+    <button id="refresh">↺</button>
+    <div id="network-status" class="connection-connecting">
+        <svg class="father-icon icon" viewBox="0 0 32 32">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                d="m 23,8 -12,7 0,2 -6,0 c 0,1.239583 0,2.760417 0,4 l 6,0 0,2 12,7 4,0 0,-3 5,0 0,-4 -5,0 c 0,-2.666667 0,-5.333333 0,-8 l 5,0 0,-4 -5,0 0,-3 z" />
+        </svg>
+        <svg class="mother-icon icon" viewBox="32 0 32 32">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                d="m 41,8 12,7 0,2 6,0 c 0,1.239583 0,2.760417 0,4 l -6,0 0,2 -12,7 -4,0 0,-3 2,0 0,-4 -2,0 c 0,-2.666667 0,-5.333333 0,-8 l 2,0 0,-4 -2,0 0,-3 z" />
+        </svg>
+    </div>
+    <canvas id="qr-code"></canvas>
+    <script src="./script.js"></script>
+</body>
+
+</html>

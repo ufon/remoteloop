@@ -75,7 +75,7 @@
     "scripts": {
         "clear": "rm -rf dist",
         "postinstall": "npm run rebuild",
-        "start": "nodemon --watch ./src --exec 'electron ./src --inspect'",
+        "start": "nodemon --watch ./src --exec \"electron ./src --inspect\"",
         "rebuild": "electron-rebuild -f -w robotjs",
         "build": "npm run clear && electron-builder",
         "test": "echo \"Error: no test specified\" && exit 1"

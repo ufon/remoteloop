@@ -1,88 +1,50 @@
-const { app, BrowserWindow, Tray, Menu, ipcMain } = require("electron");
-const path = require("path");
+const { app, ipcMain, BrowserWindow } = require("electron");
+const contextMenu = require("./helpers/createContextMenu.js");
+const createTray = require("./helpers/createTray.js");
+const { default: createWindow } = require("./helpers/createWindow.js");
 const controller = require("./server/controller.js");
 
-const assetsDirectory = path.join(__dirname, "assets");
-
-let tray;
 let window;
-
-const getWindowPosition = () => {
-  const windowBounds = window.getBounds();
-  const trayBounds = tray.getBounds();
-  const x = Math.round(
-    trayBounds.x + trayBounds.width / 2 - windowBounds.width / 2
-  );
-  const y = Math.round(trayBounds.y + trayBounds.height + 4);
-  return { x, y };
-};
-
-const toggleWindow = () => {
-  if (window.isVisible()) {
-    window.hide();
-  } else {
-    const position = getWindowPosition();
-    window.setPosition(position.x, position.y, false);
-    window.show();
-    window.setVisibleOnAllWorkspaces(true);
-    window.focus();
-    window.setVisibleOnAllWorkspaces(false);
-  }
-};
-
-const createTray = () => {
-  tray = new Tray(path.join(assetsDirectory, "remoteControl.png"));
-
-  tray.on("right-click", toggleWindow);
-  tray.on("double-click", toggleWindow);
-  tray.on("click", toggleWindow);
-};
-
-const createWindow = () => {
-  window = new BrowserWindow({
-    width: 200,
-    height: 200,
-    frame: false,
-    show: false,
-    fullscreenable: false,
-    resizable: false,
-    webPreferences: {
-      nodeIntegration: true,
-      backgroundThrottling: false
-    }
-  });
-  window.loadFile(`${__dirname}/index.html`);
-
-  window.on("blur", () => {
-    if (!window.webContents.isDevToolsOpened()) {
-      window.hide();
-    }
-  });
-};
 
 app.on("ready", () => {
   app.dock.hide();
-  controller.run();
-  createTray();
-  createWindow();
+  window = createWindow();
+  createTray(window);
+
+  window.webContents.on("did-finish-load", () => {
+    controller.run(window);
+  });
 });
 
-ipcMain.on("network-change", (event, onLine) => {
-  if (onLine) {
-    controller.stop();
-    controller.run();
+app.on("activate", () => {
+  if (BrowserWindow.getAllWindows().length === 0) {
+    window = createWindow();
   }
-});
-
-ipcMain.on("menu-click", event => {
-  const contextMenu = Menu.buildFromTemplate([
-    { id: "1", label: "About", click: toggleWindow },
-    { type: "separator" },
-    { id: "2", label: "Quit", role: "quit" }
-  ]);
-  contextMenu.popup();
 });
 
 app.on("window-all-closed", () => {
   app.quit();
 });
+
+ipcMain.on("restart", (event, onLine) => {
+  if (onLine) {
+    controller.restart(window);
+  }
+});
+
+ipcMain.on("menu-click", () => {
+  contextMenu.popup();
+});
+
+// [
+//   `exit`,
+//   `SIGINT`,
+//   `SIGUSR1`,
+//   `SIGUSR2`,
+//   // `uncaughtException`,
+//   `SIGTERM`,
+// ].forEach((event) => {
+//   process.on(event, () => {
+//     controller.stop(process.exit);
+//   });
+// });
