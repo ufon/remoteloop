@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0 (2021-01-09)
+
+
+### Features
+
+* huge refactor + status/refresh icon ([cc05c90](https://github.com/ufon/remoteloop/commit/cc05c90f94f2521c42324fa609d8d1abded5784d))
+
+
+
+
+
 ## 0.1.2 (2021-01-05)
 
 
