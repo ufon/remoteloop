@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.3.0 (2021-01-10)
+
+
+### Features
+
+* win support + prettier to desktop package ([2f814c9](https://github.com/ufon/remoteloop/commit/2f814c9b3df6c7fa84b44831f5d7c67782f40460))
+
+
+
+
+
 # 0.2.0 (2021-01-09)
 
 
