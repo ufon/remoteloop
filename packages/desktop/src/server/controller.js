@@ -34,7 +34,6 @@ const controller = {
       }
 
       socket.on('pan', async event => {
-        console.log('pan');
         const { velocityX, velocityY } = event;
 
         const { x: oldX, y: oldY } = await nutjs.mouse.getPosition();
