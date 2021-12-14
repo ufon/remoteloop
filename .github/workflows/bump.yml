@@ -1,6 +1,9 @@
 name: remoteloop-bump
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   bump:
