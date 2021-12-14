@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.4.5 (2021-12-14)
+
+
+### Bug Fixes
+
+* check release tag [release] ([8a4b1f6](https://github.com/ufon/remoteloop/commit/8a4b1f6c520846e2038704633a62184241a78f86))
+
+
+
+
+
 ## 0.4.4 (2021-12-14)
 
 
