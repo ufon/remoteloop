@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.4.0 (2021-12-14)
+
+
+### Features
+
+* fix console log ([5fc9fa9](https://github.com/ufon/remoteloop/commit/5fc9fa99ca613c7aa433bf0b6b7c4e5cfb7f97aa))
+
+
+
+
+
 ## 0.3.1 (2021-12-14)
 
 **Note:** Version bump only for package @remoteloop/desktop
