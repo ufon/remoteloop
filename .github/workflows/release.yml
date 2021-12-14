@@ -1,16 +1,10 @@
 name: remoteloop-release
 
-on:
-  workflow_run:
-    workflows: ["remoteloop-bump"]
-    branches: [master]
-    types:
-      - completed
+on: workflow_dispatch
 
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    if: "contains(github.event.commits[1].message, '[release]')"
     strategy:
       matrix:
         os: [macos-latest, windows-latest]
