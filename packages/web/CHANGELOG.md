@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.4.2 (2021-12-14)
+
+
+### Bug Fixes
+
+* bump pipeline ([a7334ee](https://github.com/ufon/remoteloop/commit/a7334ee095bd7b2e8b77dc8cd1eb9190e95044b9))
+
+
+
+
+
 ## 0.4.1 (2021-12-14)
 
 **Note:** Version bump only for package @remoteloop/web
