@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.4.4 (2021-12-14)
+
+
+### Bug Fixes
+
+* release pipeline check [release] ([dbb7a8e](https://github.com/ufon/remoteloop/commit/dbb7a8e91214140cc8d645ba5da4008dc9850e20))
+
+
+
+
+
 ## 0.4.3 (2021-12-14)
 
 **Note:** Version bump only for package remoteloop
