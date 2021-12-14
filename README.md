@@ -9,8 +9,7 @@ Designed for macOS, Linux, Windows.
 In order to run locally type the following:
 
 ```
-npm install
-npm run bootstrap
+npm ci && npm run bootstrap
 npm start
 ```
 
