@@ -12,7 +12,7 @@ const createWindow = () => {
     resizable: false,
     webPreferences: {
       nodeIntegration: true,
-      backgroundThrottling: false,
+      contextIsolation: false,
     },
   });
   window.loadFile(htmlPath + '/index.html');

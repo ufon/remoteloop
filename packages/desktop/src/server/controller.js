@@ -1,5 +1,5 @@
 const express = require('express');
-const robot = require('robotjs');
+const nutjs = require('@nut-tree/nut-js');
 const ip = require('ip');
 const { dirname, join } = require('path');
 const { WAIT, CONNECTED } = require('../constants/statuses');
@@ -9,9 +9,6 @@ const io = require('socket.io')(server, {
   transports: ['websocket'],
 });
 const appBundleDirectory = join(dirname(require.resolve('@remoteloop/web/package.json')), 'dist');
-
-robot.setMouseDelay(1);
-robot.setKeyboardDelay(1);
 
 app.use(express.static(appBundleDirectory));
 
@@ -36,43 +33,46 @@ const controller = {
         });
       }
 
-      socket.on('pan', event => {
-        const { x: oldX, y: oldY } = robot.getMousePos();
+      socket.on('pan', async event => {
+        console.log('pan');
         const { velocityX, velocityY } = event;
 
-        robot.moveMouse(oldX + velocityX * 10 * 2, oldY + velocityY * 10 * 2);
+        const { x: oldX, y: oldY } = await nutjs.mouse.getPosition();
+
+        await nutjs.mouse.move([new nutjs.Point(oldX + velocityX * 10 * 2, oldY + velocityY * 10 * 2)]);
       });
 
-      socket.on('pan-drag', event => {
-        const { x: oldX, y: oldY } = robot.getMousePos();
+      socket.on('pan-drag', async event => {
         const { velocityX, velocityY } = event;
+        const { x: oldX, y: oldY } = await nutjs.mouse.getPosition();
 
-        robot.dragMouse(oldX + velocityX * 10 * 2, oldY + velocityY * 10 * 2);
+        await nutjs.mouse.move([new nutjs.Point(oldX + velocityX * 10 * 2, oldY + velocityY * 10 * 2)]);
       });
 
-      socket.on('tap', () => {
-        robot.mouseClick();
+      socket.on('tap', async () => {
+        await nutjs.mouse.leftClick();
       });
 
-      socket.on('press', () => {
-        robot.mouseToggle('down');
+      socket.on('press', async () => {
+        await nutjs.mouse.pressButton(nutjs.Button.LEFT);
       });
 
-      socket.on('pressup', () => {
-        robot.mouseToggle('up');
+      socket.on('pressup', async () => {
+        await nutjs.mouse.releaseButton(nutjs.Button.LEFT);
       });
 
-      socket.on('scroll', event => {
+      socket.on('scroll', async event => {
         const { velocityY } = event;
-        robot.scrollMouse(0, velocityY * 10 * 2);
+
+        await nutjs.mouse.scrollUp(velocityY * 10 * 2);
       });
 
-      socket.on('keyboard-string', string => {
-        robot.typeString(string);
+      socket.on('keyboard-string', async string => {
+        await nutjs.keyboard.type(string);
       });
 
-      socket.on('keyboard-special', keyCode => {
-        robot.keyTap(keyCode.toLowerCase());
+      socket.on('keyboard-special', async keyCode => {
+        await nutjs.keyboard.type(nutjs.Key[keyCode]);
       });
     });
 
