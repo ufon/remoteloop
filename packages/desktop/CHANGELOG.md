@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.5.0 (2022-01-17)
+
+
+### Features
+
+* major nut-js version ([af29674](https://github.com/ufon/remoteloop/commit/af29674f46cfab3ac1f67f26a3af60e1e08cd14a))
+
+
+
+
+
 ## 0.4.6 (2021-12-14)
 
 **Note:** Version bump only for package @remoteloop/desktop
