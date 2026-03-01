@@ -2,11 +2,28 @@ name: Release
 
 on:
   push:
+    branches: [main]
     tags:
       - 'v*'
 
 jobs:
+  prepare:
+    if: github.ref_type == 'branch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Delete old nightly release
+        run: |
+          gh release delete nightly --yes || true
+          git push --delete origin nightly || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   release:
+    needs: prepare
+    if: always()
     permissions:
       contents: write
     strategy:
@@ -54,10 +71,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ github.ref_name }}
-          releaseName: 'remoteloop ${{ github.ref_name }}'
-          releaseBody: |
-            See the assets below to download and install this version.
-          releaseDraft: true
-          prerelease: false
+          tagName: ${{ github.ref_type == 'tag' && github.ref_name || 'nightly' }}
+          releaseName: ${{ github.ref_type == 'tag' && format('remoteloop {0}', github.ref_name) || 'remoteloop nightly' }}
+          releaseBody: ${{ github.ref_type == 'tag' && 'See the assets below to download and install this version.' || 'Latest build from the main branch.' }}
+          releaseDraft: ${{ github.ref_type == 'tag' }}
+          prerelease: ${{ github.ref_type != 'tag' }}
           args: ${{ matrix.args }}
