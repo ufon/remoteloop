@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(wsl --list --verbose)"
+      "Bash(wsl --list --verbose)",
+      "Bash(npm install -g pnpm)"
     ]
   }
 }

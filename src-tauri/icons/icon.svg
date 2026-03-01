@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480">
+  <defs>
+    <!--
+      Palette:
+        thistle       #cdb4db  — diamond dark stop
+        pastel-petal  #ffc8dd  — connector
+        baby-pink     #ffafcc  — PC circle
+        icy-blue      #bde0fe  — phone dot
+        sky-blue      #a2d2ff  — diamond light stop
+    -->
+    <linearGradient id="diamond" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#03045e"/>
+      <stop offset="100%" stop-color="#cdb4db"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 1. Connector — pastel-petal, hidden inside diamond by paint order -->
+  <line x1="225" y1="255" x2="365" y2="105"
+        stroke="#ffc8dd" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- 2. Diamond frame — sky-blue → thistle gradient -->
+  <rect x="-135" y="-135" width="270" height="270" rx="50"
+        fill="url(#diamond)"
+        transform="translate(225,255) rotate(45)"/>
+
+  <!-- 3. Large circle — PC, baby-pink -->
+  <circle cx="225" cy="255" r="90" fill="#ffafcc"/>
+
+  <!-- 4. Small circle — phone, icy-blue -->
+  <circle cx="365" cy="105" r="25" fill="url(#diamond)"/>
+</svg>

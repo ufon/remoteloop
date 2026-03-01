@@ -1,0 +1,21 @@
+{
+  "name": "remoteloop",
+  "private": true,
+  "scripts": {
+    "dev": "vite build --config vite.mobile.config.ts && vite",
+    "build": "vite build && vite build --config vite.mobile.config.ts",
+    "build:mobile": "vite build --config vite.mobile.config.ts",
+    "dev:mobile": "vite build --config vite.mobile.config.ts --watch"
+  },
+  "devDependencies": {
+    "@tauri-apps/api": "^2",
+    "typescript": "^5",
+    "vite": "^6",
+    "vite-plugin-singlefile": "^2.3.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}

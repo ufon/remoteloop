@@ -4,22 +4,16 @@
   "version": "0.1.0",
   "identifier": "com.remoteloop.app",
   "build": {
-    "beforeDevCommand": "trunk serve",
-    "devUrl": "http://localhost:1420",
-    "beforeBuildCommand": "trunk build",
-    "frontendDist": "../dist"
+    "frontendDist": "../dist/ui",
+    "devUrl": "http://localhost:5173",
+    "beforeDevCommand": "pnpm dev",
+    "beforeBuildCommand": "pnpm build"
   },
   "app": {
     "withGlobalTauri": true,
-    "windows": [
-      {
-        "title": "remoteloop",
-        "width": 800,
-        "height": 600
-      }
-    ],
+    "windows": [],
     "security": {
-      "csp": null
+      "csp": "default-src 'self'; style-src 'self' 'unsafe-inline'; connect-src ipc: http://ipc.localhost"
     }
   },
   "bundle": {
